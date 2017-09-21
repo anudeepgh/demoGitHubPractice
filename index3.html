@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Semantic UI CDN</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css"/>
+</head>
+<body>
+	<div class="ui horizontal divider">or</div>
+<form class="ui form" id="entry">
+  <div class="two fields">
+    <div class="field">
+      <label>Integer</label>
+      <input name="integer" type="text" value="11">
+    </div>
+    <div class="field">
+      <label>E-mail</label>
+      <input name="email" type="text" value="jack@b.c">
+    </div>
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <label>Decimal</label>
+      <input name="decimal" type="text" value="1.1">
+    </div>
+    <div class="field">
+      <label>Number</label>
+      <input name="number" type="text" value="200">
+    </div>
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <label>URL</label>
+      <input name="url" type="text" value="www.fakeurl.com">
+    </div>
+    <div class="field">
+      <label>RegEx</label>
+      <input name="regex" type="text" value="">
+    </div>
+  </div>
+  <div class="ui submit button">Submit</div>
+  <div class="ui error message"></div>
+</form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.js"></script>
+    
+<script type="text/javascript">
+
+$(' form')
+  .form({
+  	fields:{
+  		integer: {
+        identifier  : 'integer',
+        rules: [
+          {
+            type   : 'integer[1..100]',
+            prompt : 'Please enter an integer value'
+          }
+        ]
+      },
+      decimal: {
+        identifier  : 'decimal',
+        rules: [
+          {
+            type   : 'decimal',
+            prompt : 'Please enter a valid decimal'
+          }
+        ]
+      },
+      number: {
+        identifier  : 'number',
+        rules: [
+          {
+            type   : 'number',
+            prompt : 'Please enter a valid number'
+          }
+        ]
+      },
+      email: {
+        identifier  : 'email',
+        rules: [
+          {
+            type   : 'email',
+            prompt : 'Please enter a valid e-mail'
+          }
+        ]
+      },
+      url: {
+        identifier  : 'url',
+        rules: [
+          {
+            type   : 'url',
+            prompt : 'Please enter a url'
+          }
+        ]
+      },
+      regex: {
+        identifier  : 'regex',
+        rules: [
+          {
+            type   : 'regExp[/^([^0][0-9]{9})?$/]',
+            prompt : 'Please enter a number'
+          }
+        ]
+      }
+	}
+  	},{
+		inline : false,
+		    on : 'blur',
+		    onSuccess : function(){
+		    console.log("on Success");
+		    },
+		    onFailure : function(){
+		    console.log("Failed");
+		    }
+	}).submit( function( e ) {
+		console.log($("#entry").form("validate form"));
+		if ($("#entry").form("is valid")) {
+			return true;
+		}
+	    e.preventDefault();
+});
+</script>
+</body>
+</html>
+<!--regex
+(19|93)\d\d[- \/.](0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])-->
